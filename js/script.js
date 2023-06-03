@@ -4,9 +4,23 @@ const playersList = ['Petr', 'Serg'];
 
 const reserv = ['Oleg', "Vadim"];
 
+document.cookie = 'players=' + encodeURIComponent(playersList);
 document.cookie = 'reserve=' + encodeURIComponent(reserv);
 
-console.log(document.cookie)
+
+const splittedCookies = document.cookie.split('; ').map((el) => {
+    const splittedEl= el.split('=');
+    const obj = {
+        name: splittedEl[0],
+        value: splittedEl[1] // доделать парсинг кукис в массив
+    }
+    return obj;
+});
+console.log(splittedCookies); 
+console.log(splittedCookies.find((el) => el.name === 'players')); 
+// найти нужный кукис и вытащить оттуда массив для отрисовки его на странице
+
+//[1].split('%2C')
 
 const state = {
    todoListCount: 0, 
